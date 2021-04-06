@@ -36,3 +36,6 @@
 
 # CLion settings
 .idea
+
+# Build folder
+build
