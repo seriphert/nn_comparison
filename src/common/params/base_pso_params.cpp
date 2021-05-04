@@ -7,7 +7,8 @@ base_pso_params_t<T, C>::base_pso_params_t():
   b_up(0),
   cog_weight(0),
   num_iters(0),
-  weight_func(nullptr)
+  weight_func(nullptr),
+  alpha(0)
 {
 }
 
@@ -16,13 +17,15 @@ base_pso_params_t<T, C>::base_pso_params_t(const C & numParticles, const T & bLo
                                            const T & bUp,
                                            const T & cogWeight,
                                            const C & numIters,
-                                           const std::shared_ptr<InertiaWeight<T>> & weightFunc):
+                                           const std::shared_ptr<InertiaWeight<T>> & weightFunc,
+                                           const T & alphaCoeff):
   num_particles(numParticles),
   b_lo(bLow),
   b_up(bUp),
   cog_weight(cogWeight),
   num_iters(numIters),
-  weight_func(weightFunc)
+  weight_func(weightFunc),
+  alpha(alphaCoeff)
 {
 }
 

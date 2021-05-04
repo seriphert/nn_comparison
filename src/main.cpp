@@ -246,18 +246,19 @@ void startNetworkTraning(const NetworkType & network_type, const TestDataset & t
   clpso_params_t<T> clpso_params;
 
   // Tuning parametes for all networks
-  T b_lo = -5;
-  T b_up = -b_lo;
+  const T b_lo = -5;
+  const T b_up = -b_lo;
 
   // Tuning parametes only for PSO-type networks
-  T cog_coeff = 1.49445;
-  std::size_t num_particles = 10;
-  std::size_t refreshing_gap = 7;  // for (I)CLPSO
+  const T cog_coeff = 1.49445;
+  const std::size_t num_particles = 10;
+  const std::size_t refreshing_gap = 7;  // for (I)CLPSO
   const T w0 = 0.9;
   const T w1 = 0.4;
   std::shared_ptr<InertiaWeight<T>> weight_func
       = std::make_shared<LinearDecreasingInertiaWeight<T>>(w0, w1);
-  
+  const T alpha = 0.2;
+
   // Activation and loss functions
   std::shared_ptr<ActivationFunction<T>> activ_func = std::make_shared<Sigmoid<T>>();
   std::shared_ptr<LossFunction<T>> loss_function = std::make_shared<MeanSquaredError<T>>();
@@ -276,6 +277,7 @@ void startNetworkTraning(const NetworkType & network_type, const TestDataset & t
     pso_params.soc_weight = cog_coeff;
     pso_params.num_iters = num_epochs;
     pso_params.weight_func = weight_func;
+    pso_params.alpha = alpha;
   }
   else
   {
@@ -286,6 +288,7 @@ void startNetworkTraning(const NetworkType & network_type, const TestDataset & t
     clpso_params.refreshing_gap = refreshing_gap;
     clpso_params.num_iters = num_epochs;
     clpso_params.weight_func = weight_func;
+    clpso_params.alpha = alpha;
   }
 
   // Initialize train and test datasets

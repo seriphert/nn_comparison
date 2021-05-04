@@ -13,7 +13,8 @@ struct base_pso_params_t
                     const T & bUp,
                     const T & cogWeight,
                     const C & numIters,
-                    const std::shared_ptr<InertiaWeight<T>> & weightFunc);
+                    const std::shared_ptr<InertiaWeight<T>> & weightFunc,
+                    const T & alphaCoeff = 0.2);
   virtual ~base_pso_params_t();
 
   C num_particles;
@@ -22,6 +23,7 @@ struct base_pso_params_t
   T cog_weight;
   C num_iters;
   std::shared_ptr<InertiaWeight<T>> weight_func;
+  T alpha;
 };
 
 template struct base_pso_params_t<float>;
