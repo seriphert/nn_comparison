@@ -9,7 +9,7 @@ template <typename T, typename C>
 Swarm<T, C>::Swarm(const base_pso_params_t<T, C> & params):
   b_lo_(params.b_lo),
   b_up_(params.b_up),
-  v_min_(-0.2 * (b_up_ - b_lo_)),
+  v_min_(-params.alpha * (b_up_ - b_lo_)),
   v_max_(-v_min_),
   cog_weight_(params.cog_weight),
   best_idx_(0),

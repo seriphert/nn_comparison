@@ -35,9 +35,11 @@ protected:
   Vector1D<T> pc_;
   // Maximal time with no updates
   C refreshing_gap_;
-  // Particles no update times array
+  // Number of iterations without update
+  // particle's best state for all particles 
   Vector1D<C> no_upd_times_;
-  // Particles to learn from in each dimension for each particle
+  // Particles numbers for i-th particle
+  // current state update procedure
   Vector2D<C> fi_;
 };
 
